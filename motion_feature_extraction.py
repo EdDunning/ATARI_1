@@ -44,8 +44,9 @@ For both the Slave Left and Slave Right instruments, the script computes:
         Euclidean distance between the start and end positions.
 
     • Economy of Motion
-        Ratio of straight-line distance to path length.
-        Higher values indicate more efficient movement.
+        A measure of the control effort required to execute the trajectory,
+        calculated as the integral of squared acceleration over time.
+        Lower values indicate more economical movement.
 
     • RMS Jerk
         Root-mean-square of the third derivative of position.
@@ -69,6 +70,7 @@ including:
     • Mean Economy of Motion
     • Mean RMS Jerk
     • Mean Smoothness Score
+    • Duration
 
 Output
 ------
@@ -282,15 +284,15 @@ def analyse_file(file_path: str | Path) -> dict:
 
     combined = {
         "file": str(file_path),
-        "total_path_length": left["slave_left_path_length"] + right["slave_right_path_length"],
-        "mean_economy_of_motion": (
+        "total_path_length /m": left["slave_left_path_length"] + right["slave_right_path_length"],
+        "mean_economy_of_motion /m^2s^-3": (
             left["slave_left_economy_of_motion"] + right["slave_right_economy_of_motion"]
         ) / 2.0,
-        "mean_rms_jerk": (left["slave_left_rms_jerk"] + right["slave_right_rms_jerk"]) / 2.0,
-        "mean_smoothness_score": (
+        "mean_rms_jerk /ms^-3": (left["slave_left_rms_jerk"] + right["slave_right_rms_jerk"]) / 2.0,
+        "mean_smoothness_score /(dimensionless)": (
             left["slave_left_smoothness_score"] + right["slave_right_smoothness_score"]
         ) / 2.0,
-        "duration_s": max(left["slave_left_duration_s"], right["slave_right_duration_s"]),
+        "duration /s": max(left["slave_left_duration_s"], right["slave_right_duration_s"]),
     }
 
     return {**combined, **left, **right}
