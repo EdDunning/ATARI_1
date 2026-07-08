@@ -1,3 +1,53 @@
+"""
+===========================================================================
+Motion Feature Storage
+===========================================================================
+
+Purpose
+-------
+This script automates the extraction of motion features from all JIGSAWS
+kinematic trials for the Suturing, Needle Passing and Knot Tying tasks.
+
+For each kinematic file, the script calls the functions defined in
+`motion_feature_extraction.py` to compute motion metrics for the Slave Left
+and Slave Right robotic instruments. The corresponding metrics from the two
+instruments are then averaged to produce a single feature vector describing
+the overall performance for that surgical trial.
+
+How it works
+------------
+1. Iterates through each of the three JIGSAWS task folders.
+2. Loads every kinematic (.txt) file within each folder.
+3. Calls the motion feature extraction functions for both slave arms.
+4. Computes the mean value of each motion metric across the two instruments.
+5. Stores the resulting feature vector for each trial.
+6. Writes one CSV summary file for each surgical task.
+
+Inputs
+------
+The script expects the following folders to exist in the same directory as
+this file:
+
+    - Suturing kinematics/AllGestures
+    - Needle_passing kinematics/AllGestures
+    - Knot_Tying kinematics/AllGestures
+
+Each folder should contain the JIGSAWS kinematic (.txt) files for that task.
+
+Outputs
+-------
+Three CSV files are produced, each containing one row per surgical trial and
+one column for each extracted motion feature:
+
+    - suturing_kinematics_summary.csv
+    - needle_passing_kinematics_summary.csv
+    - knot_tying_kinematics_summary.csv
+
+These summary files provide the feature matrices used as inputs for the
+subsequent machine learning stage of the project.
+"""
+
+
 from pathlib import Path
 
 import pandas as pd
@@ -6,18 +56,27 @@ from motion_feature_extraction import load_kinematic_file, analyse_arm
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DATA_DIR = SCRIPT_DIR / "Suturing kinematics" / "AllGestures"
-OUTPUT_CSV = SCRIPT_DIR / "suturing_kinematics_summary.csv"
-OUTPUT_CSV = Path("suturing_kinematics_summary.csv")
 
-# Five per-arm metrics to average across slave_left and slave_right.
-# If you want a different fifth metric, change this list.
+DATASETS = {
+    "Suturing kinematics": SCRIPT_DIR / "Suturing kinematics" / "AllGestures",
+    "Needle_passing kinematics": SCRIPT_DIR / "Needle_passing kinematics" / "AllGestures",
+    "Knot_Tying kinematics": SCRIPT_DIR / "Knot_Tying kinematics" / "AllGestures",
+}
+
+OUTPUT_FILES = {
+    "Suturing kinematics": SCRIPT_DIR / "suturing_kinematics_summary.csv",
+    "Needle_passing kinematics": SCRIPT_DIR / "needle_passing_kinematics_summary.csv",
+    "Knot_Tying kinematics": SCRIPT_DIR / "knot_tying_kinematics_summary.csv",
+}
+
+# Metrics to average across the two slave arms.
+# These keys must match the names returned by analyse_arm(...).
 METRICS = [
-    ("path_length", "path_length"),
-    ("economy_of_motion", "economy_of_motion"),
-    ("rms_jerk", "rms_jerk"),
-    ("smoothness_score", "smoothness_score"),
-    ("duration_s", "duration_s"),
+    "path_length",
+    "economy_of_motion",
+    "rms_jerk",
+    "smoothness_score",
+    "duration_s",
 ]
 
 
@@ -33,47 +92,54 @@ def analyse_file_mean_both_arms(file_path: Path) -> dict:
 
     row = {"file": file_path.name}
 
-    for metric_name, _ in METRICS:
-        left_key = f"slave_left_{metric_name}"
-        right_key = f"slave_right_{metric_name}"
+    for metric in METRICS:
+        left_key = f"slave_left_{metric}"
+        right_key = f"slave_right_{metric}"
 
         if left_key not in left or right_key not in right:
             raise KeyError(f"Missing metric keys: {left_key}, {right_key}")
 
-        row[f"mean_{metric_name}"] = (left[left_key] + right[right_key]) / 2.0
+        row[f"mean_{metric}"] = (left[left_key] + right[right_key]) / 2.0
 
     return row
 
 
-def main() -> None:
-    if not DATA_DIR.exists():
-        raise FileNotFoundError(f"Folder not found: {DATA_DIR}")
+def process_dataset(dataset_name: str, folder_path: Path, output_csv: Path) -> None:
+    """
+    Process all .txt files in one dataset folder and save a CSV summary.
+    """
+    if not folder_path.exists():
+        raise FileNotFoundError(f"Folder not found: {folder_path}")
 
-    print("Looking in:", DATA_DIR)
-    print("Directory exists:", DATA_DIR.exists())
-    files = sorted(DATA_DIR.glob("*.txt"))
+    files = sorted(folder_path.glob("*.txt"))
     if not files:
-        raise FileNotFoundError(f"No .txt files found in: {DATA_DIR}")
+        raise FileNotFoundError(f"No .txt files found in: {folder_path}")
 
     rows = []
     for file_path in files:
         try:
             rows.append(analyse_file_mean_both_arms(file_path))
         except Exception as e:
-            print(f"Skipping {file_path.name}: {e}")
+            print(f"Skipping {file_path.name} in {dataset_name}: {e}")
 
     if not rows:
-        raise RuntimeError("No files were processed successfully.")
+        raise RuntimeError(f"No files were processed successfully in {dataset_name}.")
 
     df = pd.DataFrame(rows)
 
-    # Optional: order columns consistently
-    column_order = ["file"] + [f"mean_{name}" for name, _ in METRICS]
+    column_order = ["file"] + [f"mean_{metric}" for metric in METRICS]
     df = df[column_order]
 
-    df.to_csv(OUTPUT_CSV, index=False)
-    print(f"Saved {len(df)} rows to {OUTPUT_CSV}")
+    df.to_csv(output_csv, index=False)
+    print(f"Saved {len(df)} rows for {dataset_name} to {output_csv}")
+
+
+def main() -> None:
+    for dataset_name, folder_path in DATASETS.items():
+        output_csv = OUTPUT_FILES[dataset_name]
+        process_dataset(dataset_name, folder_path, output_csv)
 
 
 if __name__ == "__main__":
     main()
+
