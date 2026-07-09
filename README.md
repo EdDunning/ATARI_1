@@ -11,8 +11,14 @@ motion_feature_storage.py runs all the files through the functions in motion_fea
 Task 2. 
 Map motion features to expert vs. novice skill ratings using an OSATS-style reference standard.
 
+Statistical analysis to find the correlation coefficients between both the motion features and the OSATS as well as the OSATS and the experience level.
+
+This is more of a stats study of the data as the outputs of this are not used for the classifiers. Its results are nontheless informative.
+
 Task 3. 
 Train and validate an ML classifier for objective skill assessment, reporting agreement with expert ratings.
+
+Classifier 1: RandomForest, details of usage are in the comments. 
 
 Task 4. 
 Frame outputs for training feedback and credentialing applications. Coordinate task split with Jack Hemphill and the senior team.
