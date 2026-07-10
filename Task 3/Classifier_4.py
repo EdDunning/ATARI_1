@@ -111,6 +111,7 @@ def get_feature_columns(df: pd.DataFrame) -> list[str]:
         "filename",
         "task",
         EXPERIENCE_TARGET,
+        "experience_numeric",
         GRS_TARGET,
         *OSATS_TARGETS,
     }
@@ -202,6 +203,10 @@ def main() -> None:
     pred_osats = osats_reg.predict(X_val)
     pred_exp_num = exp_reg.predict(X_val)
 
+    # Store the experience-level regression coefficients for inspection
+    exp_intercept = float(exp_reg.intercept_)
+    exp_coeffs = np.asarray(exp_reg.coef_, dtype=float)
+
     # Convert predicted OSATS to DataFrame
     pred_osats_df = pd.DataFrame(pred_osats, columns=[f"pred_{c}" for c in OSATS_TARGETS], index=y_osats_val.index)
     pred_grs = pred_osats_df.sum(axis=1)
@@ -249,6 +254,9 @@ def main() -> None:
     summary_rows.append({"metric": "experience_accuracy", "value": exp_accuracy})
     # Also include numeric experience RMSE for completeness
     summary_rows.append({"metric": "experience_rmse", "value": exp_rmse})
+    summary_rows.append({"metric": "experience_intercept", "value": exp_intercept})
+    for feature, coef in zip(feature_cols, exp_coeffs):
+        summary_rows.append({"metric": f"experience_coef_{feature}", "value": float(coef)})
 
     summary_df = pd.DataFrame(summary_rows)
     summary_df.to_csv(SUMMARY_FILE, index=False)
@@ -262,6 +270,9 @@ def main() -> None:
     print(f"GRS RMSE: {grs_rmse:.4f}")
     print(f"Experience accuracy (rounded): {exp_accuracy:.4f}")
     print(f"Experience RMSE (numeric): {exp_rmse:.4f}")
+    print(f"Experience intercept (b0): {exp_intercept:.6f}")
+    for idx, feature in enumerate(feature_cols):
+        print(f"{feature} (b{idx + 1}): {exp_coeffs[idx]:.6f}")
 
     print(f"\nSaved predictions to: {PREDICTIONS_FILE}")
     print(f"Saved summary to: {SUMMARY_FILE}")

@@ -1,0 +1,17 @@
+metric,value
+osats_rmse_respect_for_tissue,1.208382661648379
+osats_rmse_suture_needle_handling,0.9261429438030893
+osats_rmse_time_and_motion,1.1116126734067762
+osats_rmse_flow_of_operation,1.0551539674336226
+osats_rmse_overall_performance,0.9830892399936082
+osats_rmse_quality_of_final_product,1.0951963537789668
+osats_rmse_mean,1.0632629733440737
+grs_rmse,5.8201414111733785
+experience_accuracy,0.36
+experience_rmse,0.702215634495765
+experience_intercept,2.251158106671749
+experience_coef_mean_path_length,0.08699302980723399
+experience_coef_mean_economy_of_motion,-0.5067493131151932
+experience_coef_mean_rms_jerk,0.6065100345742445
+experience_coef_mean_smoothness_score,0.08734059146327361
+experience_coef_mean_duration_s,-0.001290986440236841

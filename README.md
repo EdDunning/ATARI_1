@@ -18,7 +18,10 @@ This is more of a stats study of the data as the outputs of this are not used fo
 Task 3. 
 Train and validate an ML classifier for objective skill assessment, reporting agreement with expert ratings.
 
-Classifier 1: RandomForest, details of usage are in the comments. 
+Classifier 1: RandomForest, pooled tasks
+Classifier 2: RandomForest, task specific
+Classifier 3: XGBoost, task specific
+Classifier 4: Linear regression: non-task specific
 
 Task 4. 
 Frame outputs for training feedback and credentialing applications. Coordinate task split with Jack Hemphill and the senior team.
