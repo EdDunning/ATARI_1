@@ -1,0 +1,10 @@
+metric,value
+osats_rmse_respect_for_tissue,1.3089397826947844
+osats_rmse_suture_needle_handling,1.320656545382336
+osats_rmse_time_and_motion,1.1674826640735059
+osats_rmse_flow_of_operation,1.0964880866792084
+osats_rmse_overall_performance,1.1943351889083151
+osats_rmse_quality_of_final_product,1.2093369766290525
+osats_rmse_mean,1.2162065407278673
+grs_rmse,6.2289164651317845
+experience_accuracy,0.4563106796116505

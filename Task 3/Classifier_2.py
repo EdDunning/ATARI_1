@@ -27,7 +27,7 @@ MERGED_FILES = {
     "knot_tying": TASK2_DIR / "knot_tying_merged.csv",
 }
 
-OUTPUT_DIR = HERE / "classifier_outputs_task_id"
+OUTPUT_DIR = HERE / "classifier_2_outputs"
 PREDICTIONS_FILE = OUTPUT_DIR / "random_forest_predictions.csv"
 SUMMARY_FILE = OUTPUT_DIR / "random_forest_validation_summary.csv"
 
