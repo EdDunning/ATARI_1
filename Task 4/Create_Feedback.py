@@ -455,81 +455,68 @@ def feedback_for_score(target: str, score: float) -> str:
     feedback_rules = {
         "respect_for_tissue": {
             "low": (
-                "Prioritise controlled instrument contact, reduced unnecessary "
-                "force and fewer abrupt corrections near tissue."
+                "1 - Frequently used unnecessary force on tissue;"
             ),
             "medium": (
-                "Continue improving controlled contact and reduce avoidable "
-                "instrument movement around tissue."
+                "3 - Careful tissue handling but occasionally caused inadvertent damage;"
             ),
             "high": (
-                "Instrument handling appears controlled and consistent with "
-                "good tissue respect."
+                "5 - Consistent appropriate tissue handling;"
             ),
         },
         "suture_needle_handling": {
             "low": (
-                "Practise deliberate needle positioning, stable grasping and "
-                "consistent needle orientation before each pass."
+                "1 - Awkward and unsure with repeated entanglement and poor knot tying;"
             ),
             "medium": (
-                "Improve the consistency of needle alignment and reduce "
-                "repositioning during passes."
+                "3 - Majority of knots placed correctly with appropriate tension;"
             ),
             "high": (
-                "Needle handling appears consistent and well controlled."
+                "5 - Excellent suture control"
             ),
         },
         "time_and_motion": {
             "low": (
-                "Reduce unnecessary path length, repeated corrections and "
-                "inactive instrument movement."
+                "1 - Made unnecessary moves;"
             ),
             "medium": (
-                "Look for opportunities to shorten instrument trajectories "
-                "and complete movements more directly."
+                "3 - Efficient time/motion but some unnecessary moves;"
             ),
             "high": (
-                "The trial demonstrates efficient use of time and motion."
+                "5 - Clear economy of movement and maximum efficiency"
             ),
         },
         "flow_of_operation": {
             "low": (
-                "Practise the procedure as a sequence of planned steps to "
-                "reduce pauses, reversals and disrupted transitions."
+                "1 - Frequently interrupted flow to discuss the next move;"
             ),
             "medium": (
-                "Improve transitions between procedural steps and reduce "
-                "hesitation before the next action."
+                "3 - Demonstrated some forward planning and reasonable procedure progression;"
             ),
             "high": (
-                "The procedural sequence appears fluent and well organised."
+                "5 - Obviously planned course of operation with efficient transitions between moves;"
             ),
         },
         "overall_performance": {
             "low": (
-                "Focus on reliable execution of the full task before attempting "
-                "to increase speed."
+                "1 - Very poor;"
             ),
             "medium": (
-                "Performance is developing; prioritise consistency across the "
-                "complete procedure."
+                "3 - Competent;"
             ),
             "high": (
-                "Overall technical execution appears strong."
+                "5 - Clearly Superior;"
             ),
         },
         "quality_of_final_product": {
             "low": (
-                "Review the final task result and practise the steps most "
-                "directly affecting accuracy and completion quality."
+                "1 - Very poor;"
             ),
             "medium": (
-                "Improve consistency in the final result while maintaining "
-                "controlled instrument motion."
+                "3 - Competent;"
             ),
             "high": (
-                "The predicted final-product quality is strong."
+                "5 - Clearly Superior;"
             ),
         },
     }
