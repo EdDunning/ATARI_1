@@ -15,6 +15,8 @@ Uses Random Forest models trained on the merged Task 2 datasets to predict:
     - predicted experience level
 New code to output task 4 specific feedback report:
     - written training feedback highlighting strengths and areas to improve
+    - i set three thresholds for each OSATS component score to generate 
+      feedback and wrote recommendations for each score range
 
 The script uses the same task-aware Random Forest architecture as
 Classifier_2.py. It trains final models using all labelled trials from the
@@ -455,68 +457,76 @@ def feedback_for_score(target: str, score: float) -> str:
     feedback_rules = {
         "respect_for_tissue": {
             "low": (
-                "1 - Frequently used unnecessary force on tissue;"
+                "Frequently used unnecessary force on tissue."
             ),
             "medium": (
-                "3 - Careful tissue handling but occasionally caused inadvertent damage;"
+                "Careful tissue handling but occasionally caused inadvertent damage."
             ),
             "high": (
-                "5 - Consistent appropriate tissue handling;"
+                "Consistent appropriate tissue handling."
             ),
         },
         "suture_needle_handling": {
             "low": (
-                "1 - Awkward and unsure with repeated entanglement and poor knot tying;"
+                "Awkward and unsure with repeated entanglement and poor knot tying."
             ),
             "medium": (
-                "3 - Majority of knots placed correctly with appropriate tension;"
+                "Majority of knots placed correctly with appropriate tension."
             ),
             "high": (
-                "5 - Excellent suture control"
+                "Excellent suture control"
             ),
         },
         "time_and_motion": {
             "low": (
-                "1 - Made unnecessary moves;"
+                "Reduce unnecessary path length, repeated corrections and "
+                "inactive instrument movement."
             ),
             "medium": (
-                "3 - Efficient time/motion but some unnecessary moves;"
+                "Look for opportunities to shorten instrument trajectories "
+                "and complete movements more directly."
             ),
             "high": (
-                "5 - Clear economy of movement and maximum efficiency"
+                "The trial demonstrates efficient use of time and motion."
             ),
         },
         "flow_of_operation": {
             "low": (
-                "1 - Frequently interrupted flow to discuss the next move;"
+                "Practise the procedure as a sequence of planned steps to "
+                "reduce pauses, reversals and disrupted transitions."
             ),
             "medium": (
-                "3 - Demonstrated some forward planning and reasonable procedure progression;"
+                "Improve transitions between procedural steps and reduce "
+                "hesitation before the next action."
             ),
             "high": (
-                "5 - Obviously planned course of operation with efficient transitions between moves;"
+                "The procedural sequence appears fluent and well organised."
             ),
         },
         "overall_performance": {
             "low": (
-                "1 - Very poor;"
+                "Focus on reliable execution of the full task before attempting "
+                "to increase speed."
             ),
             "medium": (
-                "3 - Competent;"
+                "Performance is developing; prioritise consistency across the "
+                "complete procedure."
             ),
             "high": (
-                "5 - Clearly Superior;"
+                "Overall technical execution appears strong."
             ),
         },
         "quality_of_final_product": {
             "low": (
-                "1 - Very poor;"
+                "Review the final task result and practise the steps most "
+                "directly affecting accuracy and completion quality."
             ),
             "medium": (
-                "3 - Competent;"
+                "Improve consistency in the final result while maintaining "
+                "controlled instrument motion."
             ),
             "high": (
-                "5 - Clearly Superior;"
+                "The predicted final-product quality is strong."
             ),
         },
     }
