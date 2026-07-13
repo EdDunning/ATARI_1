@@ -1,0 +1,11 @@
+{
+  "pythonVersion": "3.14",
+  "pythonPlatform": "Windows",
+  "typeCheckingMode": "basic",
+  "extraPaths": [
+    "Task 1",
+    "Task 2",
+    "Task 3",
+    "Task 4"
+  ]
+}

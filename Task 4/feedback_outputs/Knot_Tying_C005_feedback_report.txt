@@ -1,0 +1,46 @@
+SURGICAL SKILL FEEDBACK REPORT
+========================================
+
+Trial: Knot_Tying_C005.txt
+Task: Knot Tying
+
+PREDICTED SUMMARY
+----------------------------------------
+Predicted GRS: 19.54 / 30
+Predicted experience level: Intermediate
+
+Experience classification probabilities:
+  Novice: 0.6%
+  Intermediate: 93.2%
+  Expert: 6.2%
+
+PREDICTED OSATS SCORES
+----------------------------------------
+Respect for tissue: 3.70 / 5
+Suture/needle handling: 2.94 / 5
+Time and motion: 2.94 / 5
+Flow of operation: 3.12 / 5
+Overall performance: 3.07 / 5
+Quality of final product: 3.77 / 5
+
+MAIN STRENGTHS
+----------------------------------------
+- Quality of final product (3.77/5): 3 - Competent;
+- Respect for tissue (3.70/5): 3 - Careful tissue handling but occasionally caused inadvertent damage;
+
+PRIORITY AREAS FOR IMPROVEMENT
+----------------------------------------
+- Time and motion (2.94/5): 3 - Efficient time/motion but some unnecessary moves;
+- Suture/needle handling (2.94/5): 3 - Majority of knots placed correctly with appropriate tension;
+
+MOTION FEATURES
+----------------------------------------
+Mean Path Length: 0.650456
+Mean Economy Of Motion: 1.77943
+Mean Rms Jerk: 3.96237
+Mean Smoothness Score: -11.0662
+Mean Duration S: 38.3
+
+INTERPRETATION NOTE
+----------------------------------------
+These outputs are model estimates derived from the JIGSAWS training dataset. They are suitable for research and formative training feedback only.

@@ -1,0 +1,46 @@
+SURGICAL SKILL FEEDBACK REPORT
+========================================
+
+Trial: Suturing_H004.txt
+Task: Suturing
+
+PREDICTED SUMMARY
+----------------------------------------
+Predicted GRS: 19.41 / 30
+Predicted experience level: Novice
+
+Experience classification probabilities:
+  Novice: 92.1%
+  Intermediate: 5.5%
+  Expert: 2.4%
+
+PREDICTED OSATS SCORES
+----------------------------------------
+Respect for tissue: 3.19 / 5
+Suture/needle handling: 3.07 / 5
+Time and motion: 2.82 / 5
+Flow of operation: 3.83 / 5
+Overall performance: 3.14 / 5
+Quality of final product: 3.36 / 5
+
+MAIN STRENGTHS
+----------------------------------------
+- Flow of operation (3.83/5): 3 - Demonstrated some forward planning and reasonable procedure progression;
+- Quality of final product (3.36/5): 3 - Competent;
+
+PRIORITY AREAS FOR IMPROVEMENT
+----------------------------------------
+- Time and motion (2.82/5): 3 - Efficient time/motion but some unnecessary moves;
+- Suture/needle handling (3.07/5): 3 - Majority of knots placed correctly with appropriate tension;
+
+MOTION FEATURES
+----------------------------------------
+Mean Path Length: 1.4484
+Mean Economy Of Motion: 1.9643
+Mean Rms Jerk: 2.38376
+Mean Smoothness Score: -13.2424
+Mean Duration S: 136.433
+
+INTERPRETATION NOTE
+----------------------------------------
+These outputs are model estimates derived from the JIGSAWS training dataset. They are suitable for research and formative training feedback only.

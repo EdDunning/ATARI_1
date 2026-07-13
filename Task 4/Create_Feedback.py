@@ -13,10 +13,13 @@ Uses Random Forest models trained on the merged Task 2 datasets to predict:
     - six predicted OSATS component scores 
     - predicted Global Rating Score (GRS)
     - predicted experience level
+    Note: This script trains final models using all labelled trials from the 
+    three merged Task 2 datasets.
 New code to output task 4 specific feedback report:
     - written training feedback highlighting strengths and areas to improve
-    - i set three thresholds for each OSATS component score to generate 
-      feedback and wrote recommendations for each score range
+    - I set three thresholds for each OSATS component score to generate 
+      feedback and wrote recommendations for each score range. These 
+      messages were taken from the JIGSAW description file.
 
 The script uses the same task-aware Random Forest architecture as
 Classifier_2.py. It trains final models using all labelled trials from the
@@ -457,76 +460,68 @@ def feedback_for_score(target: str, score: float) -> str:
     feedback_rules = {
         "respect_for_tissue": {
             "low": (
-                "Frequently used unnecessary force on tissue."
+                "1 - Frequently used unnecessary force on tissue;"
             ),
             "medium": (
-                "Careful tissue handling but occasionally caused inadvertent damage."
+                "3 - Careful tissue handling but occasionally caused inadvertent damage;"
             ),
             "high": (
-                "Consistent appropriate tissue handling."
+                "5 - Consistent appropriate tissue handling;"
             ),
         },
         "suture_needle_handling": {
             "low": (
-                "Awkward and unsure with repeated entanglement and poor knot tying."
+                "1 - Awkward and unsure with repeated entanglement and poor knot tying;"
             ),
             "medium": (
-                "Majority of knots placed correctly with appropriate tension."
+                "3 - Majority of knots placed correctly with appropriate tension;"
             ),
             "high": (
-                "Excellent suture control"
+                "5 - Excellent suture control"
             ),
         },
         "time_and_motion": {
             "low": (
-                "Reduce unnecessary path length, repeated corrections and "
-                "inactive instrument movement."
+                "1 - Made unnecessary moves;"
             ),
             "medium": (
-                "Look for opportunities to shorten instrument trajectories "
-                "and complete movements more directly."
+                "3 - Efficient time/motion but some unnecessary moves;"
             ),
             "high": (
-                "The trial demonstrates efficient use of time and motion."
+                "5 - Clear economy of movement and maximum efficiency"
             ),
         },
         "flow_of_operation": {
             "low": (
-                "Practise the procedure as a sequence of planned steps to "
-                "reduce pauses, reversals and disrupted transitions."
+                "1 - Frequently interrupted flow to discuss the next move;"
             ),
             "medium": (
-                "Improve transitions between procedural steps and reduce "
-                "hesitation before the next action."
+                "3 - Demonstrated some forward planning and reasonable procedure progression;"
             ),
             "high": (
-                "The procedural sequence appears fluent and well organised."
+                "5 - Obviously planned course of operation with efficient transitions between moves;"
             ),
         },
         "overall_performance": {
             "low": (
-                "Focus on reliable execution of the full task before attempting "
-                "to increase speed."
+                "1 - Very poor;"
             ),
             "medium": (
-                "Performance is developing; prioritise consistency across the "
-                "complete procedure."
+                "3 - Competent;"
             ),
             "high": (
-                "Overall technical execution appears strong."
+                "5 - Clearly Superior;"
             ),
         },
         "quality_of_final_product": {
             "low": (
-                "Review the final task result and practise the steps most "
-                "directly affecting accuracy and completion quality."
+                "1 - Very poor;"
             ),
             "medium": (
-                "Improve consistency in the final result while maintaining "
-                "controlled instrument motion."
+                "3 - Competent;"
             ),
             "high": (
-                "The predicted final-product quality is strong."
+                "5 - Clearly Superior;"
             ),
         },
     }
@@ -649,8 +644,7 @@ def create_feedback_summary(
             (
                 "These outputs are model estimates derived from the JIGSAWS "
                 "training dataset. They are suitable for research and formative "
-                "training feedback, but not as a standalone basis for clinical "
-                "credentialing."
+                "training feedback only."
             ),
         ]
     )
