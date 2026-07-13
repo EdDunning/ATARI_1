@@ -99,6 +99,13 @@ import pandas as pd
 # ============================================================
 # CONFIGURATION
 # ============================================================
+SCRIPT_DIR = Path(__file__).resolve().parent
+KINEMATIC_FOLDERS = {
+    "Suturing": SCRIPT_DIR / "Suturing kinematics" / "AllGestures",
+    "Needle_Passing": SCRIPT_DIR / "Needle_Passing kinematics" / "AllGestures",
+    "Knot_Tying": SCRIPT_DIR / "Knot_Tying kinematics" / "AllGestures",
+}
+
 INPUT_FILE = "Suturing_B001.txt"
 FPS = 30.0
 DT = 1.0 / FPS
@@ -136,6 +143,34 @@ def load_kinematic_file(file_path: str | Path) -> np.ndarray:
         raise ValueError("No valid numeric rows were found in the file.")
 
     return df.to_numpy(dtype=float)
+
+
+def find_kinematic_file(file_name_or_path: str | Path) -> Path:
+    """Resolve a kinematic file path from the project folders."""
+    supplied_path = Path(file_name_or_path)
+
+    if supplied_path.exists():
+        return supplied_path.resolve()
+
+    file_name = supplied_path.name
+    if supplied_path.suffix.lower() != ".txt":
+        file_name = supplied_path.with_suffix(".txt").name
+
+    for folder in KINEMATIC_FOLDERS.values():
+        if not folder.exists():
+            continue
+
+        exact_match = folder / file_name
+        if exact_match.exists():
+            return exact_match.resolve()
+
+        for candidate in folder.glob("*.txt"):
+            if candidate.name.lower() == file_name.lower():
+                return candidate.resolve()
+
+    raise FileNotFoundError(
+        f"Could not find '{file_name_or_path}' in the Task 1 kinematic folders."
+    )
 
 
 def get_xyz_trajectory(data: np.ndarray, arm: str) -> np.ndarray:
@@ -299,14 +334,15 @@ def analyse_file(file_path: str | Path) -> dict:
 
 
 if __name__ == "__main__":
-    results = analyse_file(INPUT_FILE)
+    input_path = find_kinematic_file(INPUT_FILE)
+    results = analyse_file(input_path)
     results_df = pd.DataFrame([results])
 
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", 200)
     print(results_df.to_string(index=False))
 
-    output_path = Path(INPUT_FILE).with_suffix("").as_posix() + "_metrics.csv"
+    output_path = input_path.with_suffix("").as_posix() + "_metrics.csv"
     results_df.to_csv(output_path, index=False)
     print(f"\nSaved metrics to: {output_path}")
 
