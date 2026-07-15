@@ -14,7 +14,7 @@ This Streamlit interface allows a user to:
 
 Run from the Task 4 directory using:
 
-    streamlit run GUI.py
+    python -m streamlit run "Task 4/GUI.py"
 """
 
 from __future__ import annotations

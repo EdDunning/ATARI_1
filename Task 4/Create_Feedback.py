@@ -460,68 +460,68 @@ def feedback_for_score(target: str, score: float) -> str:
     feedback_rules = {
         "respect_for_tissue": {
             "low": (
-                "1 - Frequently used unnecessary force on tissue;"
+                "Frequently used unnecessary force on tissue;"
             ),
             "medium": (
-                "3 - Careful tissue handling but occasionally caused inadvertent damage;"
+                "Careful tissue handling but occasionally caused inadvertent damage;"
             ),
             "high": (
-                "5 - Consistent appropriate tissue handling;"
+                "Consistent appropriate tissue handling;"
             ),
         },
         "suture_needle_handling": {
             "low": (
-                "1 - Awkward and unsure with repeated entanglement and poor knot tying;"
+                "Awkward and unsure with repeated entanglement and poor knot tying;"
             ),
             "medium": (
-                "3 - Majority of knots placed correctly with appropriate tension;"
+                "Majority of knots placed correctly with appropriate tension;"
             ),
             "high": (
-                "5 - Excellent suture control"
+                "Excellent suture control"
             ),
         },
         "time_and_motion": {
             "low": (
-                "1 - Made unnecessary moves;"
+                "Made unnecessary moves;"
             ),
             "medium": (
-                "3 - Efficient time/motion but some unnecessary moves;"
+                "Efficient time/motion but some unnecessary moves;"
             ),
             "high": (
-                "5 - Clear economy of movement and maximum efficiency"
+                "Clear economy of movement and maximum efficiency"
             ),
         },
         "flow_of_operation": {
             "low": (
-                "1 - Frequently interrupted flow to discuss the next move;"
+                "Frequently interrupted flow to discuss the next move;"
             ),
             "medium": (
-                "3 - Demonstrated some forward planning and reasonable procedure progression;"
+                "Demonstrated some forward planning and reasonable procedure progression;"
             ),
             "high": (
-                "5 - Obviously planned course of operation with efficient transitions between moves;"
+                "Obviously planned course of operation with efficient transitions between moves;"
             ),
         },
         "overall_performance": {
             "low": (
-                "1 - Very poor;"
+                "Very poor;"
             ),
             "medium": (
-                "3 - Competent;"
+                "Competent;"
             ),
             "high": (
-                "5 - Clearly Superior;"
+                "Clearly Superior;"
             ),
         },
         "quality_of_final_product": {
             "low": (
-                "1 - Very poor;"
+                "Very poor;"
             ),
             "medium": (
-                "3 - Competent;"
+                "Competent;"
             ),
             "high": (
-                "5 - Clearly Superior;"
+                "Clearly Superior;"
             ),
         },
     }

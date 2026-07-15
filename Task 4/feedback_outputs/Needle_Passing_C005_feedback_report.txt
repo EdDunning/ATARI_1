@@ -1,0 +1,46 @@
+SURGICAL SKILL FEEDBACK REPORT
+========================================
+
+Trial: Needle_Passing_C005.txt
+Task: Needle Passing
+
+PREDICTED SUMMARY
+----------------------------------------
+Predicted GRS: 12.44 / 30
+Predicted experience level: Intermediate
+
+Experience classification probabilities:
+  Novice: 7.3%
+  Intermediate: 81.7%
+  Expert: 11.0%
+
+PREDICTED OSATS SCORES
+----------------------------------------
+Respect for tissue: 1.47 / 5
+Suture/needle handling: 2.09 / 5
+Time and motion: 1.36 / 5
+Flow of operation: 2.96 / 5
+Overall performance: 1.99 / 5
+Quality of final product: 2.56 / 5
+
+MAIN STRENGTHS
+----------------------------------------
+- Flow of operation (2.96/5): Demonstrated some forward planning and reasonable procedure progression;
+- Quality of final product (2.56/5): Competent;
+
+PRIORITY AREAS FOR IMPROVEMENT
+----------------------------------------
+- Time and motion (1.36/5): Made unnecessary moves;
+- Respect for tissue (1.47/5): Frequently used unnecessary force on tissue;
+
+MOTION FEATURES
+----------------------------------------
+Mean Path Length: 0.940431
+Mean Economy Of Motion: 1.93133
+Mean Rms Jerk: 2.92758
+Mean Smoothness Score: -12.5691
+Mean Duration S: 85.2
+
+INTERPRETATION NOTE
+----------------------------------------
+These outputs are model estimates derived from the JIGSAWS training dataset. They are suitable for research and formative training feedback only.

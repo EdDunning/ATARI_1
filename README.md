@@ -26,3 +26,5 @@ Classifier 4: Linear regression: non-task specific
 Task 4. 
 Frame outputs for training feedback and credentialing applications. Coordinate task split with Jack Hemphill and the senior team.
 
+GUI: I made a web based Graphical User Interface for a user to navigate and run a kinematic data file to extract all motion features, as well as run Classifier 2 with its outputs. This will be for an intended use of inputting a file which is not part of the dataset that the model has been trained on.
+
