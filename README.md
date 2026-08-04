@@ -28,3 +28,14 @@ Frame outputs for training feedback and credentialing applications. Coordinate t
 
 GUI: I made a web based Graphical User Interface for a user to navigate and run a kinematic data file to extract all motion features, as well as run Classifier 2 with its outputs. This will be for an intended use of inputting a file which is not part of the dataset that the model has been trained on.
 
+Exhaustive list of libraries used in my code:
+
+- Python standard library: argparse, pathlib, re, sys
+- NumPy
+- pandas
+- Matplotlib
+- scikit-learn
+- Streamlit
+- XGBoost 
+
+These are the main libraries used throughout the repository's Python scripts for data loading, feature extraction, statistical analysis, visualization, machine learning, and the GUI interface.
